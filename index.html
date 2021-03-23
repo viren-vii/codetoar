@@ -24,61 +24,73 @@
         <div class="prettyprint codeHere leftPart">
             <pre class="prettyprint">
                 <form>
-//looking at bot from front : IRs are numbered from left to right
-#define TRIGGER_PIN <input type="text" placeholder="Pin Number" id="TRIGGER_PIN" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define ECHO_PIN <input type="text" placeholder="Pin Number" id="ECHO_PIN" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define IR1 <input type="text" placeholder="Pin Number" id="IR1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define IR2 <input type="text" placeholder="Pin Number" id="IR2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define IR3 <input type="text" placeholder="Pin Number" id="IR3" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define IR4 <input type="text" placeholder="Pin Number" id="IR4" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define IR5 <input type="text" placeholder="Pin Number" id="IR5" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define ENA <input type="text" placeholder="Pin Number" id="ENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define ENB <input type="text" placeholder="Pin Number" id="ENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define RM1 <input type="text" placeholder="Pin Number" id="RM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define RM2 <input type="text" placeholder="Pin Number" id="RM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define LM1 <input type="text" placeholder="Pin Number" id="LM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-#define LM2 <input type="text" placeholder="Pin Number" id="LM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
-float SP_ENA = <input type="text" placeholder="SPEED A" id="SP_ENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>;
-float SP_ENB = <input type="text" placeholder="SPEED B" id="SP_ENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>;
+#define TRIGGER_PIN 9
+#define ECHO_PIN 10 
+
+#define IR1 A1
+#define IR2 A2
+#define IR3 A3
+#define IR4 A4
+#define IR5 A5
+
+#define EN1 3 
+#define LM1 4
+#define LM2 5
+#define EN2 6
+#define RM1 7
+#define RM2 8
+
+float SP_EN1 = <input type="text" placeholder="SPEED A" id="SP_EN1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>;
+float SP_EN2 = <input type="text" placeholder="SPEED B" id="SP_EN2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>;
 
 void forward(){
     Serial.print("Forwards Triggered");
-    digitalWrite(RM1,<input type="text" placeholder="HIGH/LOW" id="fRM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(RM2,<input type="text" placeholder="HIGH/LOW" id="fRM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(LM1,<input type="text" placeholder="HIGH/LOW" id="fLM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(LM2,<input type="text" placeholder="HIGH/LOW" id="fLM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    analogWrite(ENA,SP_ENA);
-    analogWrite(ENB,SP_ENB);
+    digitalWrite(RM1,HIGH);
+    digitalWrite(RM2,LOW);
+    analogWrite(EN2,SP_EN2);
+    digitalWrite(LM1,HIGH);
+    digitalWrite(LM2,LOW);
+    analogWrite(EN1,SP_EN1);   
 }
 
 void right(){
     Serial.print("Right Triggered");
-    digitalWrite(RM1,<input type="text" placeholder="HIGH/LOW" id="rRM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(RM2,<input type="text" placeholder="HIGH/LOW" id="rRM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(LM1,<input type="text" placeholder="HIGH/LOW" id="rLM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(LM2,<input type="text" placeholder="HIGH/LOW" id="rLM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    analogWrite(ENA,<input type="text" placeholder="SPEED A" id="rENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    analogWrite(ENB,<input type="text" placeholder="SPEED B" id="rENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(RM1,LOW);
+    digitalWrite(RM2,LOW);
+    analogWrite(EN2,0);
+    digitalWrite(LM1,HIGH);
+    digitalWrite(LM2,LOW);
+    analogWrite(EN1,SP_EN1);
 }
 
 void left(){
     Serial.print("Right Triggered");
-    digitalWrite(RM1,<input type="text" placeholder="HIGH/LOW" id="lRM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(RM2,<input type="text" placeholder="HIGH/LOW" id="lRM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(LM1,<input type="text" placeholder="HIGH/LOW" id="lLM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(LM2,<input type="text" placeholder="HIGH/LOW" id="lLM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    analogWrite(ENA,<input type="text" placeholder="SPEED A" id="lENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    analogWrite(ENB,<input type="text" placeholder="SPEED B" id="lENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(RM1,HIGH);
+    digitalWrite(RM2,LOW);
+    analogWrite(EN2,SP_EN2);
+    digitalWrite(LM1,LOW);
+    digitalWrite(LM2,LOW);
+    analogWrite(EN1,0);
 }
 
 void deg360(){
     Serial.print("Right Triggered");
-    digitalWrite(RM1,<input type="text" placeholder="HIGH/LOW" id="d360RM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(RM2,<input type="text" placeholder="HIGH/LOW" id="d360RM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(LM1,<input type="text" placeholder="HIGH/LOW" id="d360LM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    digitalWrite(LM2,<input type="text" placeholder="HIGH/LOW" id="d360LM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    analogWrite(ENA,<input type="text" placeholder="SPEED A" id="d360ENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
-    analogWrite(ENB,<input type="text" placeholder="SPEED B" id="d360ENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(RM1,HIGH);
+    digitalWrite(RM2,LOW);
+    analogWrite(EN2,SP_EN2);
+    digitalWrite(LM1,LOW);
+    digitalWrite(LM2,HIGH);
+    analogWrite(EN1,SP_EN1);
+}
+
+void reverse(){
+    Serial.print("Reverse Triggered");
+    digitalWrite(RM1,LOW);
+    digitalWrite(RM2,HIGH);
+    analogWrite(EN2,SP_EN2);
+    digitalWrite(LM1,LOW);
+    digitalWrite(LM2,HIGH);
+    analogWrite(EN1,SP_EN1);   
 }
 
 void stop(){
@@ -87,8 +99,8 @@ void stop(){
     digitalWrite(RM2,LOW);
     digitalWrite(LM1,LOW);
     digitalWrite(LM2,LOW);
-    analogWrite(ENA,0);
-    analogWrite(ENB,0);
+    analogWrite(EN1,0);
+    analogWrite(EN2,0);
 }
 
 
@@ -133,16 +145,14 @@ void loop(){
     <button type="button" onclick="toggleUS();">Toggle Ultrasonic</button>
     <div id="ultrasonicBlock" style="display: none;">
     if(dist()&lt;<input type="number" placeholder="DISTANCE" id="dist" required oninput="handleOnChange();"/>){
-        stop_bot();
+        <input id="FnUS" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required/>();
         delay(10);
     }
     </div>
     <div id="ifBlocks">
-    <div id="if0">
     if(S1 == <input class="SS" id="S1if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S2 == <input class="SS" id="S2if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S3 == <input class="SS" id="S3if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S4 == <input class="SS" id="S4if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S5 == <input class="SS" id="S5if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/>){
         <input id="Fnif0" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required/>();
     }
-    </div>
     </div>
     <button type="button" onclick="addIfBlock();">+</button>
 

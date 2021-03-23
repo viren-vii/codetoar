@@ -22,7 +22,7 @@ html, body{
   width: 50%;
   text-align: left;
   border: 1px solid green;
-  line-height: 1.58em;
+  /* line-height: 1.58em; */
   font-size: x-large;
   padding: .5em;
 }

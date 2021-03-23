@@ -70,24 +70,16 @@ function checkIfValues(){
     stringify();
 }
 
+
 var visibleUS = false;
 var usBlock = "";
+var vDist, vFnUS;
 
 function toggleUS(){
     var usBlockRef = document.getElementById("ultrasonicBlock");
     visibleUS = !visibleUS;
-    console.log(visibleUS);
-    style = "";
-    if(visibleUS){
-        usBlock = `if(dist()<`+vDist+`){
-            stop_bot();
-            delay(10);
-            }`;
-            style = "block";
-    }else{
-        usBlock = "";
-        style = "none";
-    }
+    style="";
+    visibleUS? style = "block" : style = "none";
     usBlockRef.style.display = style;
     handleOnChange();
 }
@@ -100,53 +92,14 @@ var vfRM1, vfRM2, vfLM1, vfLM2,
     vd360RM1, vd360RM2, vd360LM1, vd360LM2, vd360ENA, vd360ENB;
 var vS1if0, vS2if0, vS3if0, vS4if0, vS5if0, vFnif0;
 function handleOnChange(){
-    vTRIGGER_PIN = document.getElementById("TRIGGER_PIN").value;
-    vECHO_PIN = document.getElementById("ECHO_PIN").value;
+
     vDist = document.getElementById("dist").value;
-
-    vIR1 = document.getElementById("IR1").value;
-    vIR2 = document.getElementById("IR2").value;
-    vIR3 = document.getElementById("IR3").value;
-    vIR4 = document.getElementById("IR4").value;
-    vIR5 = document.getElementById("IR5").value;
-
-    vRM1 = document.getElementById("RM1").value;
-    vRM2 = document.getElementById("RM2").value;
-    vLM1 = document.getElementById("LM1").value;
-    vLM2 = document.getElementById("LM2").value;
-
-    vSP_ENA = document.getElementById("SP_ENA").value;
-    vSP_ENB = document.getElementById("SP_ENB").value;
-
-    vENA = document.getElementById("ENA").value;
-    vENB = document.getElementById("ENB").value;
-
-    vfRM1 = document.getElementById("fRM1").value;
-    vfRM2 = document.getElementById("fRM2").value;
-    vfLM1 = document.getElementById("fLM1").value;
-    vfLM2 = document.getElementById("fLM2").value;
-
-    vrRM1 = document.getElementById("rRM1").value;
-    vrRM2 = document.getElementById("rRM2").value;
-    vrLM1 = document.getElementById("rLM1").value;
-    vrLM2 = document.getElementById("rLM2").value;
-    vrENA = document.getElementById("rENA").value;
-    vrENB = document.getElementById("rENB").value;
-
-    vlRM1 = document.getElementById("lRM1").value;
-    vlRM2 = document.getElementById("lRM2").value;
-    vlLM1 = document.getElementById("lLM1").value;
-    vlLM2 = document.getElementById("lLM2").value;
-    vlENA = document.getElementById("lENA").value;
-    vlENB = document.getElementById("lENB").value;
-
-    vd360RM1 = document.getElementById("d360RM1").value;
-    vd360RM2 = document.getElementById("d360RM2").value;
-    vd360LM1 = document.getElementById("d360LM1").value;
-    vd360LM2 = document.getElementById("d360LM2").value;
-    vd360ENA = document.getElementById("d360ENA").value;
-    vd360ENB = document.getElementById("d360ENB").value;
+    vFnUS = document.getElementById("FnUS").value;
     
+    
+    vSP_EN1 = document.getElementById("SP_EN1").value;
+    vSP_EN2 = document.getElementById("SP_EN2").value;
+
     vS1if0 = document.getElementById("S1if0").value;
     vS2if0 = document.getElementById("S2if0").value;
     vS3if0 = document.getElementById("S3if0").value;
@@ -154,8 +107,14 @@ function handleOnChange(){
     vS5if0 = document.getElementById("S5if0").value;
     vFnif0 = document.getElementById("Fnif0").value;
 
+    usBlock = `if(dist()<`+vDist+`){
+            `+vFnUS+`();
+            delay(10);
+        }`;
+
     changeArduino();
 }
+
 function stringify(){
     addedIfString = "";
     for(x in addedIf){
@@ -165,99 +124,116 @@ function stringify(){
 }
 //`+vv+`
 function changeArduino(){
-    code = `//looking at bot from front : IRs are numbered from left to right
-#define TRIGGER_PIN `+vTRIGGER_PIN+`
-#define ECHO_PIN `+vECHO_PIN+`
-#define IR1 `+vIR1+`
-#define IR2 `+vIR2+`
-#define IR3 `+vIR3+`
-#define IR4 `+vIR4+`
-#define IR5 `+vIR5+`
-#define ENA `+vENA+`
-#define ENB `+vENB+`
-#define RM1 `+vRM1+`
-#define RM2 `+vRM2+`
-#define LM1 `+vLM1+`
-#define LM2 `+vLM2+`
-float SP_ENA = `+vSP_ENA+`;
-float SP_ENB = `+vSP_ENB+`;
+    code = `#define TRIGGER_PIN 9
+#define ECHO_PIN 10 
+
+#define IR1 A1
+#define IR2 A2
+#define IR3 A3
+#define IR4 A4
+#define IR5 A5
+
+#define EN1 3 
+#define LM1 4
+#define LM2 5
+#define EN2 6
+#define RM1 7
+#define RM2 8
+
+float SP_ENA = `+vSP_EN1+`;
+float SP_ENB = `+vSP_EN2+`;
 
 
 void forward(){
-	Serial.print("Forwards Triggered");
-	digitalWrite(RM1,`+vfRM1+`);
-	digitalWrite(RM2,`+vfRM2+`);
-	digitalWrite(LM1,`+vfLM1+`);
-	digitalWrite(LM2,`+vfLM2+`);
-	analogWrite(ENA,SP_ENA);
-	analogWrite(ENB,SP_ENB);
+    Serial.print("Forwards Triggered");
+    digitalWrite(RM1,HIGH);
+    digitalWrite(RM2,LOW);
+    analogWrite(EN2,SP_EN2);
+    digitalWrite(LM1,HIGH);
+    digitalWrite(LM2,LOW);
+    analogWrite(EN1,SP_EN1);   
 }
 
 void right(){
-	Serial.print("Right Triggered");
-	digitalWrite(RM1,`+vrRM1+`);
-	digitalWrite(RM2,`+vrRM2+`);
-	digitalWrite(LM1,`+vrLM1+`);
-	digitalWrite(LM2,`+vrLM2+`);
-	analogWrite(ENA,`+vrENA+`);
-	analogWrite(ENB,`+vrENB+`);
+    Serial.print("Right Triggered");
+    digitalWrite(RM1,LOW);
+    digitalWrite(RM2,LOW);
+    analogWrite(EN2,0);
+    digitalWrite(LM1,HIGH);
+    digitalWrite(LM2,LOW);
+    analogWrite(EN1,SP_EN1);
 }
 
 void left(){
-	Serial.print("Right Triggered");
-	digitalWrite(RM1,`+vlRM1+`);
-	digitalWrite(RM2,`+vlRM2+`);
-	digitalWrite(LM1,`+vlLM1+`);
-	digitalWrite(LM2,`+vlLM2+`);
-	analogWrite(ENA,`+vlENA+`);
-	analogWrite(ENB,`+vlENB+`);
+    Serial.print("Right Triggered");
+    digitalWrite(RM1,HIGH);
+    digitalWrite(RM2,LOW);
+    analogWrite(EN2,SP_EN2);
+    digitalWrite(LM1,LOW);
+    digitalWrite(LM2,LOW);
+    analogWrite(EN1,0);
 }
 
 void deg360(){
-	Serial.print("Right Triggered");
-	digitalWrite(RM1,`+vd360RM1+`);
-	digitalWrite(RM2,`+vd360RM2+`);
-	digitalWrite(LM1,`+vd360LM1+`);
-	digitalWrite(LM2,`+vd360LM2+`);
-	analogWrite(ENA,`+vd360ENA+`);
-	analogWrite(ENB,`+vd360ENB+`);
+    Serial.print("Right Triggered");
+    digitalWrite(RM1,HIGH);
+    digitalWrite(RM2,LOW);
+    analogWrite(EN2,SP_EN2);
+    digitalWrite(LM1,LOW);
+    digitalWrite(LM2,HIGH);
+    analogWrite(EN1,SP_EN1);
+}
+
+void reverse(){
+    Serial.print("Reverse Triggered");
+    digitalWrite(RM1,LOW);
+    digitalWrite(RM2,HIGH);
+    analogWrite(EN2,SP_EN2);
+    digitalWrite(LM1,LOW);
+    digitalWrite(LM2,HIGH);
+    analogWrite(EN1,SP_EN1);   
 }
 
 void stop(){
-	Serial.print("Right Triggered");
-	digitalWrite(RM1,LOW);
-	digitalWrite(RM2,LOW);
-	digitalWrite(LM1,LOW);
-	digitalWrite(LM2,LOW);
-	analogWrite(ENA,0);
-	analogWrite(ENB,0);
+    Serial.print("Right Triggered");
+    digitalWrite(RM1,LOW);
+    digitalWrite(RM2,LOW);
+    digitalWrite(LM1,LOW);
+    digitalWrite(LM2,LOW);
+    analogWrite(EN1,0);
+    analogWrite(EN2,0);
 }
 
+
 void setup(){
-	Serial.begin(9600);
-	// MOTOR AND ENABLES
-	pinMode (RM1, OUTPUT);
-	pinMode (RM2, OUTPUT);
-	pinMode (LM1, OUTPUT);
-	pinMode (LM2, OUTPUT);
-	pinMode (ENA, OUTPUT);
-	pinMode (ENB, OUTPUT);
-	// IR ARRAY
-	pinMode (IR1, INPUT);
-	pinMode (IR2, INPUT);
-	pinMode (IR3, INPUT);
-	pinMode (IR4, INPUT);
-	pinMode (IR5, INPUT);
+    Serial.begin(9600);
+    // MOTOR AND ENABLES
+    pinMode (RM1, OUTPUT);
+    pinMode (RM2, OUTPUT);
+    pinMode (LM1, OUTPUT);
+    pinMode (LM2, OUTPUT);
+    pinMode (ENA, OUTPUT);
+    pinMode (ENB, OUTPUT);
+    // IR ARRAY
+    pinMode (IR1, INPUT);
+    pinMode (IR2, INPUT);
+    pinMode (IR3, INPUT);
+    pinMode (IR4, INPUT);
+    pinMode (IR5, INPUT);
+    // ULTRASONIC SENSOR
+    pinMode(ECHO_PIN,INPUT);
+    pinMode(TRIGGER_PIN,OUTPUT);
 }
+
 int dist(){
-        digitalWrite(TRIGGER_PIN,LOW);
-        delayMicroseconds(2);
-        digitalWrite(TRIGGER_PIN,HIGH);
-        delayMicroseconds(10);
-        digitalWrite(TRIGGER_PIN,LOW);
-        int dur=pulseIn(ECHO_PIN, HIGH);
-        c=dur*0.0294/2;
-        return c;
+    digitalWrite(TRIGGER_PIN,LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIGGER_PIN,HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIGGER_PIN,LOW);
+    int dur=pulseIn(ECHO_PIN, HIGH);
+    c=dur*0.0294/2;
+    return c;
 }
 void loop(){
 	int S1 = digitalRead(IR1);
@@ -266,7 +242,7 @@ void loop(){
 	int S4 = digitalRead(IR4);
         int S5 = digitalRead(IR5);
     
-        `+usBlock+`
+        `+(visibleUS ? usBlock : "")+`
 
 	if(S1 == `+vS1if0+` and S2 == `+vS2if0+` and S3 == `+vS3if0+` and S4 == `+vS4if0+` and S5 == `+vS5if0+`){
             `+vFnif0+`();
@@ -275,7 +251,7 @@ void loop(){
 }
     `;
     document.getElementById("arduinoCodeDiv").innerText = code;
-    console.log("TRIGGERED");
+
 }
 
 
