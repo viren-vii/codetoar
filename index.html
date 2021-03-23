@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="utf-8">
+    <title>HTML generator</title>
+    <meta name="description" content="HTML generator">
+    <meta name="author" content="Viren-vii">
+    <link rel="stylesheet" href="./index.css">
+    <script src="./index.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="default.asp">Home</a></li>
+            <li><a href="news.asp">News</a></li>
+            <li><a href="contact.asp">Contact</a></li>
+            <li style="float:right"><a href="about.asp">About</a></li>
+        </ul>
+    </div>
+    <div class="codeScreen">
+        <div class="prettyprint codeHere leftPart">
+            <pre class="prettyprint">
+                <form>
+//looking at bot from front : IRs are numbered from left to right
+#define TRIGGER_PIN <input type="text" placeholder="Pin Number" id="TRIGGER_PIN" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define ECHO_PIN <input type="text" placeholder="Pin Number" id="ECHO_PIN" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define IR1 <input type="text" placeholder="Pin Number" id="IR1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define IR2 <input type="text" placeholder="Pin Number" id="IR2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define IR3 <input type="text" placeholder="Pin Number" id="IR3" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define IR4 <input type="text" placeholder="Pin Number" id="IR4" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define IR5 <input type="text" placeholder="Pin Number" id="IR5" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define ENA <input type="text" placeholder="Pin Number" id="ENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define ENB <input type="text" placeholder="Pin Number" id="ENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define RM1 <input type="text" placeholder="Pin Number" id="RM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define RM2 <input type="text" placeholder="Pin Number" id="RM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define LM1 <input type="text" placeholder="Pin Number" id="LM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+#define LM2 <input type="text" placeholder="Pin Number" id="LM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>
+float SP_ENA = <input type="text" placeholder="SPEED A" id="SP_ENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>;
+float SP_ENB = <input type="text" placeholder="SPEED B" id="SP_ENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>;
+
+void forward(){
+    Serial.print("Forwards Triggered");
+    digitalWrite(RM1,<input type="text" placeholder="HIGH/LOW" id="fRM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(RM2,<input type="text" placeholder="HIGH/LOW" id="fRM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(LM1,<input type="text" placeholder="HIGH/LOW" id="fLM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(LM2,<input type="text" placeholder="HIGH/LOW" id="fLM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    analogWrite(ENA,SP_ENA);
+    analogWrite(ENB,SP_ENB);
+}
+
+void right(){
+    Serial.print("Right Triggered");
+    digitalWrite(RM1,<input type="text" placeholder="HIGH/LOW" id="rRM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(RM2,<input type="text" placeholder="HIGH/LOW" id="rRM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(LM1,<input type="text" placeholder="HIGH/LOW" id="rLM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(LM2,<input type="text" placeholder="HIGH/LOW" id="rLM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    analogWrite(ENA,<input type="text" placeholder="SPEED A" id="rENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    analogWrite(ENB,<input type="text" placeholder="SPEED B" id="rENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+}
+
+void left(){
+    Serial.print("Right Triggered");
+    digitalWrite(RM1,<input type="text" placeholder="HIGH/LOW" id="lRM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(RM2,<input type="text" placeholder="HIGH/LOW" id="lRM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(LM1,<input type="text" placeholder="HIGH/LOW" id="lLM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(LM2,<input type="text" placeholder="HIGH/LOW" id="lLM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    analogWrite(ENA,<input type="text" placeholder="SPEED A" id="lENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    analogWrite(ENB,<input type="text" placeholder="SPEED B" id="lENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+}
+
+void deg360(){
+    Serial.print("Right Triggered");
+    digitalWrite(RM1,<input type="text" placeholder="HIGH/LOW" id="d360RM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(RM2,<input type="text" placeholder="HIGH/LOW" id="d360RM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(LM1,<input type="text" placeholder="HIGH/LOW" id="d360LM1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    digitalWrite(LM2,<input type="text" placeholder="HIGH/LOW" id="d360LM2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    analogWrite(ENA,<input type="text" placeholder="SPEED A" id="d360ENA" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+    analogWrite(ENB,<input type="text" placeholder="SPEED B" id="d360ENB" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>);
+}
+
+void stop(){
+    Serial.print("Right Triggered");
+    digitalWrite(RM1,LOW);
+    digitalWrite(RM2,LOW);
+    digitalWrite(LM1,LOW);
+    digitalWrite(LM2,LOW);
+    analogWrite(ENA,0);
+    analogWrite(ENB,0);
+}
+
+
+void setup(){
+    Serial.begin(9600);
+    // MOTOR AND ENABLES
+    pinMode (RM1, OUTPUT);
+    pinMode (RM2, OUTPUT);
+    pinMode (LM1, OUTPUT);
+    pinMode (LM2, OUTPUT);
+    pinMode (ENA, OUTPUT);
+    pinMode (ENB, OUTPUT);
+    // IR ARRAY
+    pinMode (IR1, INPUT);
+    pinMode (IR2, INPUT);
+    pinMode (IR3, INPUT);
+    pinMode (IR4, INPUT);
+    pinMode (IR5, INPUT);
+    // ULTRASONIC SENSOR
+    pinMode(ECHO_PIN,INPUT);
+    pinMode(TRIGGER_PIN,OUTPUT);
+}
+
+int dist(){
+    digitalWrite(TRIGGER_PIN,LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIGGER_PIN,HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIGGER_PIN,LOW);
+    int dur=pulseIn(ECHO_PIN, HIGH);
+    c=dur*0.0294/2;
+    return c;
+}
+
+void loop(){
+    int S1 = digitalRead(IR1);
+    int S2 = digitalRead(IR2);
+    int S3 = digitalRead(IR3);
+    int S4 = digitalRead(IR4);
+    int S5 = digitalRead(IR5);
+
+    <button type="button" onclick="toggleUS();">Toggle Ultrasonic</button>
+    <div id="ultrasonicBlock" style="display: none;">
+    if(dist()&lt;<input type="number" placeholder="DISTANCE" id="dist" required oninput="handleOnChange();"/>){
+        stop_bot();
+        delay(10);
+    }
+    </div>
+    <div id="ifBlocks">
+    <div id="if0">
+    if(S1 == <input class="SS" id="S1if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S2 == <input class="SS" id="S2if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S3 == <input class="SS" id="S3if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S4 == <input class="SS" id="S4if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S5 == <input class="SS" id="S5if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/>){
+        <input id="Fnif0" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required/>();
+    }
+    </div>
+    </div>
+    <button type="button" onclick="addIfBlock();">+</button>
+
+}
+                </form>
+            </pre>
+
+        </div>
+    <div id="arduinoCode">
+        <pre>
+        <div id = "arduinoCodeDiv" class="rightPart" onclick="copyToCB('arduinoCodeDiv');">
+
+        </div>
+        </pre>
+    </div>
+    </div>
+    </body>
+</html> 

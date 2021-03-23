@@ -1,0 +1,65 @@
+html, body{
+  height: 100%;
+  background-color: #FFF;
+  margin: 0;
+  padding: 0;
+}
+
+.codeScreen{
+  display: table;
+  width: 100%;
+  border: 1px solid yellow;
+}
+.leftPart{
+  display: table-cell;
+  width: 50%;
+  text-align: left;
+  border: 1px solid red;
+  padding: .5em;
+}
+.rightPart{
+  display: table-cell;
+  width: 50%;
+  text-align: left;
+  border: 1px solid green;
+  line-height: 1.58em;
+  font-size: x-large;
+  padding: .5em;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a,select {
+    background-color: aliceblue;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: black;
+    color: white;
+  }
+  input[type="text"]{
+    padding: 0;
+  }
+  pre{
+    font-size: x-large;
+  }
+ .SS {
+   width: 10px;
+ }
+ #arduinoCode:hover {
+   cursor: pointer;
+ }
