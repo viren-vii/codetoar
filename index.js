@@ -133,12 +133,12 @@ function changeArduino(){
 #define IR4 A4
 #define IR5 A5
 
-#define EN1 3 
-#define LM1 4
-#define LM2 5
-#define EN2 6
-#define RM1 7
-#define RM2 8
+#define EN2 3
+#define RM1 4
+#define RM2 5
+#define EN1 6 
+#define LM1 7
+#define LM2 8
 
 float SP_ENA = `+vSP_EN1+`;
 float SP_ENB = `+vSP_EN2+`;

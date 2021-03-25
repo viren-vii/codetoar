@@ -116,3 +116,11 @@ in1 in2 left
 in3  in4 right
 
 */
+/*updated
+D6 en1
+D7 in1
+D8 in2
+D3 en2
+D4 in3
+D5 in4
+*/
