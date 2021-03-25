@@ -13,11 +13,14 @@
     <script src="./index.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.1/build/styles/default.min.css">
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.7.1/build/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
     <script>hljs.highlightAll();</script>
 
     <!-- <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> -->
 </head>
 <body>
+    <div id="loader" class="loader"></div> 
+    <div id="cover"></div>
     <div class="nav">
         <ul>
             <li><a href="default.asp">Home</a></li>
@@ -26,10 +29,13 @@
             <li style="float:right"><a href="about.asp">About</a></li>
         </ul>
     </div>
-    <div class="codeScreen">
-        <div class="codeHere leftPart">
-            <pre><code class="lang-cpp">
-                <form>
+
+<div style="text-align: center;"><button onclick="document.getElementById('modalId').style.display='block'"
+class="w3-button w3-round-xlarge w3-xlarge w3-pale-blue w3-hover-black">GET CODE</button></div>
+
+<div class="codeScreen">
+<div class="codeHere leftPart">
+<pre><code class="lang-cpp"> <form>
 #define TRIGGER_PIN 9
 #define ECHO_PIN 10 
 
@@ -46,8 +52,8 @@
 #define LM1 7
 #define LM2 8
 
-float SP_EN1 = <input type="text" placeholder="SPEED A" id="SP_EN1" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>;
-float SP_EN2 = <input type="text" placeholder="SPEED B" id="SP_EN2" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required></input>;
+float SP_EN1 = <input type="text" placeholder="SPEED A" id="SP_EN1" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required></input>;
+float SP_EN2 = <input type="text" placeholder="SPEED B" id="SP_EN2" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required></input>;
 
 void forward(){
     Serial.print("Forwards Triggered");
@@ -151,31 +157,43 @@ void loop(){
     <button type="button" onclick="toggleUS();">Toggle Ultrasonic</button>
     <div id="ultrasonicBlock" style="display: none;">
     //Distance in cm
-    if(dist()&lt;<input type="number" placeholder="DISTANCE" id="dist" required oninput="handleOnChange();"/>){
-        <input id="FnUS" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required/>();
+    if(dist()&lt;<input type="number" placeholder="DISTANCE" id="dist" required oninput="handleOnChange(); this.style.width = ((this.value.length + 5) * 10) + 'px';"/>){
+        <input id="FnUS" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 2) * 10) + 'px';" required/>();
         delay(10);
     }
     </div>
     <div id="ifBlocks">
-    if(S1 == <input class="SS" id="S1if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S2 == <input class="SS" id="S2if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S3 == <input class="SS" id="S3if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S4 == <input class="SS" id="S4if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/> && S5 == <input class="SS" id="S5if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 1) * 8) + 'px';" required/>){
-        <input id="Fnif0" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 1) * 8) + 'px';" required/>();
+    if(S1 == <input class="SS" id="S1if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length +2) * 10) + 'px';" required/> && S2 == <input class="SS" id="S2if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required/> && S3 == <input class="SS" id="S3if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required/> && S4 == <input class="SS" id="S4if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required/> && S5 == <input class="SS" id="S5if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required/>){
+        <input id="Fnif0" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 2) * 10) + 'px';" required/>();
     }
     </div>
     <button type="button" onclick="addIfBlock();">+</button>
 
 }
-                </form>
-            </code>
+</form> </code></pre>
+        </div>
+
+    <div id="modalId" class="w3-modal">
+        <div class="w3-modal-content w3-animate-zoom">
+        <header class="w3-container w3-pale-blue"> 
+            <h2 style="text-align: center;">Click on the button to copy code!</h2>
+            <div style="text-align: center;"><button type="button" onclick="copyToCB('arduinoCodeDiv')">Copy Code</button></div>
+            <span onclick="document.getElementById('modalId').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+            </header>
+          <div class="w3-container">
+            <pre class="arduinoCode">
+                <div id = "arduinoCodeDiv">
+                </div>
             </pre>
-
+          </div>
+          <footer class="w3-container w3-pale-blue">
+            <p>   </p>
+          </footer>
         </div>
-    <div id="arduinoCode">
-        <pre>
-        <div id = "arduinoCodeDiv" class="rightPart" onclick="copyToCB('arduinoCodeDiv');">
+      </div>
 
-        </div>
-        </pre>
-    </div>
+
     </div>
     </body>
 </html> 

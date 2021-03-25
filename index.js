@@ -1,4 +1,12 @@
-window.onload = function() {addIfBlockRef = document.getElementById("ifBlocks");handleOnChange();changeArduino()}
+window.onload = function() {
+    addIfBlockRef = document.getElementById("ifBlocks");
+    document.getElementById("cover").style.display = "none";
+    document.getElementById("loader").style.display = "none";
+
+    dpcument
+    handleOnChange();
+    changeArduino();
+}
 var body = document.getElementsByTagName('body')[0];
 var idCount = 0;
 function addIfBlock(){
@@ -23,8 +31,8 @@ function createIfBlock(idCount){
 
     return [
     "\
-    if(S1 == <input class=\"SS\" id=\"S1if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 1) * 8) + 'px';\" required/> && S2 == <input class=\"SS\" id=\"S2if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 1) * 8) + 'px';\" required/> && S3 == <input class=\"SS\" id=\"S3if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 1) * 8) + 'px';\" required/> && S4 == <input class=\"SS\" id=\"S4if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 1) * 8) + 'px';\" required/> && S5 == <input class=\"SS\" id=\"S5if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 1) * 8) + 'px';\" required/>){<br>\
-        <input id=\"Fnif"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 1) * 8) + 'px';\" required/>();<br>\
+    if(S1 == <input class=\"SS\" id=\"S1if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/> && S2 == <input class=\"SS\" id=\"S2if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/> && S3 == <input class=\"SS\" id=\"S3if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/> && S4 == <input class=\"SS\" id=\"S4if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/> && S5 == <input class=\"SS\" id=\"S5if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/>){<br>\
+        <input id=\"Fnif"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/>();<br>\
     }<button type=\"button\" id=\"delBtn"+idCount+"\"onclick=\"deleteIfBlock(this);\">-</button>"
     ].join('\n');
 }
