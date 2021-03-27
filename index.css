@@ -125,3 +125,6 @@ img{
   top: 25%; /* Position the navbar at the top of the page */
   right: 10%;
 }
+::selection{
+  background-color: #ffbadd;
+}
