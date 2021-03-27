@@ -3,7 +3,6 @@ window.onload = function() {
     document.getElementById("cover").style.display = "none";
     document.getElementById("loader").style.display = "none";
 
-    dpcument
     handleOnChange();
     changeArduino();
 }
