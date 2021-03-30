@@ -55,9 +55,6 @@ ul {
     background-color: black;
     color: white;
   }
-  input{
-    /* font-size: 100px; */
-  }
   pre{
     font-size: x-large;
   }
@@ -124,7 +121,24 @@ img{
   position: fixed; /* Set the navbar to fixed position */
   top: 25%; /* Position the navbar at the top of the page */
   right: 10%;
+  box-shadow: 0 0 10px #ff9fcf; 
+}
+.floatbt{
+  border:1px solid #ff66b3;
+  box-shadow: 0 0 10px #ff9fcf; 
+}
+.floatbt:hover {
+  border:1px solid #6d0037;
+  box-shadow: 0 0 10px #ff0080; 
 }
 ::selection{
   background-color: #ffbadd;
+}
+input:focus {
+  outline: none !important;
+  outline-offset: 0;
+  border:1px solid #ff66b3;
+  padding: 4px;
+  line-height: 25px;
+  box-shadow: 0 0 10px #ff9fcf; 
 }
