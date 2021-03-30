@@ -35,7 +35,7 @@
 <div class="codeHere">
 <pre><code class="lang-cpp"> <form>
 <div class="floatBtn" style="text-align: center;"><button type="submit" onclick="document.getElementById('modalId').style.display='block'">GET CODE</button></div>
-#define TRIGGER_PIN 9
+<!-- #define TRIGGER_PIN 9
 #define ECHO_PIN 10 
 
 #define IR1 A1
@@ -49,12 +49,15 @@
 #define RM2 5
 #define EN1 6
 #define LM1 7
-#define LM2 8
+#define LM2 8 -->
 
-float SP_EN1 = <input type="text" placeholder="SPEED A" id="SP_EN1" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required></input>;
-float SP_EN2 = <input type="text" placeholder="SPEED B" id="SP_EN2" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required></input>;
-
-void forward(){
+    float SP_EN1 = <input type="number" min="0" max="255" placeholder="SPEED 1" id="SP_EN1" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 20) + 'px';" required></input>;
+    float SP_EN2 = <input type="number" min="0" max="255" placeholder="SPEED 2" id="SP_EN2" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 20) + 'px';" required></input>;
+<datalist id = "HL">
+    <option value="HIGH"></option>
+    <option value="LOW"></option>
+</datalist>
+<!-- void forward(){
     Serial.print("Forwards Triggered");
     digitalWrite(RM1,HIGH);
     digitalWrite(RM2,LOW);
@@ -151,24 +154,24 @@ void loop(){
     int S2 = digitalRead(IR2);
     int S3 = digitalRead(IR3);
     int S4 = digitalRead(IR4);
-    int S5 = digitalRead(IR5);
+    int S5 = digitalRead(IR5); -->
 
     <button type="button" onclick="toggleUS();">Toggle Ultrasonic</button>
     <div id="ultrasonicBlock" style="display: none;">
     //Distance in cm
-    if(dist()&lt;<input type="number" placeholder="DISTANCE" id="dist" required oninput="handleOnChange(); this.style.width = ((this.value.length + 5) * 10) + 'px';"/>){
+    if(dist()&lt;<input type="number" placeholder="DISTANCE" min="0" id="dist" required oninput="handleOnChange(); this.style.width = ((this.value.length + 5) * 10) + 'px';"/>){
         <input id="FnUS" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 2) * 10) + 'px';" required/>();
         delay(10);
     }
     </div>
     <div id="ifBlocks">
-    if(S1 == <input class="SS" id="S1if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length +2) * 10) + 'px';" required/> && S2 == <input class="SS" id="S2if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required/> && S3 == <input class="SS" id="S3if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required/> && S4 == <input class="SS" id="S4if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required/> && S5 == <input class="SS" id="S5if0" type="text" oninput="handleOnChange();this.style.width = ((this.value.length + 2) * 10) + 'px';" required/>){
+    if(S1 == <input class="SS" id="S1if0" type="number" min="0" max="1" oninput="handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';" required/> && S2 == <input class="SS" id="S2if0" type="number" min="0" max="1" oninput="handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';" required/> && S3 == <input class="SS" id="S3if0" type="number" min="0" max="1" oninput="handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';" required/> && S4 == <input class="SS" id="S4if0" type="number" min="0" max="1" oninput="handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';" required/> && S5 == <input class="SS" id="S5if0" type="number" min="0" max="1" oninput="handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';" required/>){
         <input id="Fnif0" type="text" oninput="handleOnChange(); this.style.width = ((this.value.length + 2) * 10) + 'px';" required/>();
     }
     </div>
     <button type="button" onclick="addIfBlock();">+</button>
 
-}
+<!-- } -->
 </form> </code></pre>
         </div>
 

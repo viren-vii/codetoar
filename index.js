@@ -21,6 +21,7 @@ function addIfBlock(){
 
 var addedIf = {}, addedIfString = "";
 // oninput=\"handleOnChange();\" required
+// type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\"
 function createIfBlock(idCount){
     //code if
     addedIf[idCount]=`
@@ -30,7 +31,7 @@ function createIfBlock(idCount){
 
     return [
     "\
-    if(S1 == <input class=\"SS\" id=\"S1if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/> && S2 == <input class=\"SS\" id=\"S2if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/> && S3 == <input class=\"SS\" id=\"S3if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/> && S4 == <input class=\"SS\" id=\"S4if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/> && S5 == <input class=\"SS\" id=\"S5if"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/>){<br>\
+    if(S1 == <input class=\"SS\" id=\"S1if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/> && S2 == <input class=\"SS\" id=\"S2if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/> && S3 == <input class=\"SS\" id=\"S3if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/> && S4 == <input class=\"SS\" id=\"S4if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/> && S5 == <input class=\"SS\" id=\"S5if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/>){<br>\
         <input id=\"Fnif"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/>();<br>\
     }<button type=\"button\" id=\"delBtn"+idCount+"\"onclick=\"deleteIfBlock(this);\">-</button>"
     ].join('\n');
@@ -63,10 +64,10 @@ function checkIfValues(){
         pushStatus[6] = inputs[5+i*6].value;
         status.push(pushStatus);
     }
-    console.log(status);
+    // console.log(status);
     var j = 1;
     status.forEach(function(x){
-        console.log(x);
+        // console.log(x);
         addedIf[j] = `
         if(S1 == `+x[1]+` and S2 == `+x[2]+` and S3 == `+x[3]+` and S4 == `+x[4]+` and S5 == `+x[5]+`){
             `+x[6]+` ();
@@ -118,10 +119,8 @@ function handleOnChange(){
             `+vFnUS+`();
             delay(10);
         }`;
-
     changeArduino();
 }
-
 function stringify(){
     addedIfString = "";
     for(x in addedIf){

@@ -55,14 +55,14 @@ ul {
     background-color: black;
     color: white;
   }
-  input[type="text"]{
-    padding: 0;
+  input{
+    /* font-size: 100px; */
   }
   pre{
     font-size: x-large;
   }
  .SS {
-   width: 10px;
+   width: 50px;
  }
 
  #cover {display:block; position: fixed; height: 100%; width: 100%; top:0; left: 0; background: rgba(0,0,0,0.5); z-index:9999;}
