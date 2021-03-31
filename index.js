@@ -146,8 +146,8 @@ function changeArduino(){
 #define LM1 7
 #define LM2 8
 
-float SP_ENA = `+vSP_EN1+`;
-float SP_ENB = `+vSP_EN2+`;
+float SP_EN1 = `+vSP_EN1+`;
+float SP_EN2 = `+vSP_EN2+`;
 
 
 void forward(){
