@@ -136,10 +136,15 @@ img{
 ::selection{
   background-color: #ffbadd;
 }
+input{
+  border-radius: 10px;
+  border-color: rgb(216, 216, 216);
+}
 input:focus {
   outline: none !important;
   outline-offset: 0;
   border:1px solid #ff66b3;
+  border-radius: 10px;
   padding: 4px;
   line-height: 25px;
   box-shadow: 0 0 10px #ff9fcf; 
