@@ -22,6 +22,15 @@ function addIfBlock(){
 var addedIf = {}, addedIfString = "";
 // oninput=\"handleOnChange();\" required
 // type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\"
+/*
+<select name=\"functions\" id=\"Fnif"+idCount+"\" oninput=\"handleOnChange();\">
+            <option value=\"forward\">forward</option>
+            <option value=\"reverse\">reverse</option>
+            <option value=\"left\">left</option>
+            <option value=\"right\">right</option>
+            <option value=\"stop\">stop</option>
+</select>
+*/
 function createIfBlock(idCount){
     //code if
     addedIf[idCount]=`
@@ -32,7 +41,13 @@ function createIfBlock(idCount){
     return [
     "\
     if(S1 == <input class=\"SS\" id=\"S1if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/> && S2 == <input class=\"SS\" id=\"S2if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/> && S3 == <input class=\"SS\" id=\"S3if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/> && S4 == <input class=\"SS\" id=\"S4if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/> && S5 == <input class=\"SS\" id=\"S5if"+idCount+"\" type=\"number\" min=\"0\" max=\"1\" oninput=\"handleOnChange();this.style.width = ((this.value.length +2) * 20) + 'px';\" required/>){<br>\
-        <input id=\"Fnif"+idCount+"\" type=\"text\" oninput=\"checkIfValues();this.style.width = ((this.value.length + 2) * 10) + 'px';\" required/>();<br>\
+        <select name=\"functions\" id=\"Fnif"+idCount+"\" oninput=\"checkIfValues();\">\
+            <option value=\"forward\" selected>forward</option>\
+            <option value=\"reverse\">reverse</option>\
+            <option value=\"left\">left</option>\
+            <option value=\"right\">right</option>\
+            <option value=\"stop\">stop</option>\
+        </select>();<br>\
     }<button type=\"button\" id=\"delBtn"+idCount+"\"onclick=\"deleteIfBlock(this);\">-</button>"
     ].join('\n');
 }
@@ -54,23 +69,25 @@ function checkIfValues(){
     var status = [];
     for(var i=1; i<=idCount; i++){
         inputs = document.getElementById("ifBlocks").getElementsByTagName("input");
+        selects = document.getElementsByTagName("select");
         
         pushStatus = {}
-        pushStatus[1] = inputs[0+i*6].value;
-        pushStatus[2] = inputs[1+i*6].value;
-        pushStatus[3] = inputs[2+i*6].value;
-        pushStatus[4] = inputs[3+i*6].value;
-        pushStatus[5] = inputs[4+i*6].value;     
-        pushStatus[6] = inputs[5+i*6].value;
+        pushStatus[1] = inputs[0+i*5].value;
+        pushStatus[2] = inputs[1+i*5].value;
+        pushStatus[3] = inputs[2+i*5].value;
+        pushStatus[4] = inputs[3+i*5].value;
+        pushStatus[5] = inputs[4+i*5].value;
+        esel = selects[i+1];
+        pushStatus[6] = esel.options[esel.selectedIndex].value;
         status.push(pushStatus);
     }
     // console.log(status);
     var j = 1;
     status.forEach(function(x){
-        // console.log(x);
+        // console.log(x[6]);
         addedIf[j] = `
         if(S1 == `+x[1]+` and S2 == `+x[2]+` and S3 == `+x[3]+` and S4 == `+x[4]+` and S5 == `+x[5]+`){
-            `+x[6]+` ();
+            `+x[6]+`();
         }`;
         j++;
     }
@@ -102,7 +119,9 @@ var vS1if0, vS2if0, vS3if0, vS4if0, vS5if0, vFnif0;
 function handleOnChange(){
 
     vDist = document.getElementById("dist").value;
-    vFnUS = document.getElementById("FnUS").value;
+    var eus = document.getElementById("FnUS");
+    // console.log(e);
+    vFnUS = eus.options[eus.selectedIndex].text;
     
     
     vSP_EN1 = document.getElementById("SP_EN1").value;
@@ -113,7 +132,11 @@ function handleOnChange(){
     vS3if0 = document.getElementById("S3if0").value;
     vS4if0 = document.getElementById("S4if0").value;
     vS5if0 = document.getElementById("S5if0").value;
-    vFnif0 = document.getElementById("Fnif0").value;
+
+    var eif = document.getElementById("Fnif0");
+    vFnif0 = eif.options[eif.selectedIndex].text;
+
+    checkIfValues();
 
     usBlock = `if(dist()<`+vDist+`){
             `+vFnUS+`();
@@ -218,8 +241,8 @@ void setup(){
     pinMode (RM2, OUTPUT);
     pinMode (LM1, OUTPUT);
     pinMode (LM2, OUTPUT);
-    pinMode (ENA, OUTPUT);
-    pinMode (ENB, OUTPUT);
+    pinMode (EN1, OUTPUT);
+    pinMode (EN2, OUTPUT);
     // IR ARRAY
     pinMode (IR1, INPUT);
     pinMode (IR2, INPUT);

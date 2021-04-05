@@ -150,6 +150,9 @@ img{
 ::selection{
   background-color: #ffbadd;
 }
+
+/*----------------------------------------*/
+
 input{
   line-height: 25px;
   border-radius: 10px;
@@ -205,3 +208,23 @@ input:focus {
 }
 
 /*------------------------------*/
+
+select{
+  display: inline;
+  border-radius: 10px;
+  line-height: 25px;
+  border: 1px solid;
+  border-color: #ff8cb0;
+  padding: 5px;
+  background-color: white;
+  appearance: none;
+}
+select:focus {
+  outline: none !important;
+  outline-offset: 0;
+  border:1px solid #CB2B5E;
+  border-radius: 10px;
+  padding: 4px;
+  line-height: 25px;
+  box-shadow: 0 0 10px #ff76a1;    
+}
